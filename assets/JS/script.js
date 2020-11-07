@@ -1,3 +1,8 @@
+//assign variables for display containers
+var questionDiv = document.querySelector("#quiz-questions");
+var answerDiv = document.querySelector("#answer-choices");
+var gradeDiv = document.querySelector("#grade");
+var pageContentEl = document.querySelector("#page-content");
 //create an array of questions 
 var questions = [
     {
@@ -101,27 +106,37 @@ var questions = [
         answer: 'Document Object Model'
     }
 ]
+//display initial page before quiz
+var startScreen = function() {
+    var heading = document.createElement("h1");
+    heading.textContent = "JavaScript Quiz Challenge"
+    heading.className = "";
 
-// {
-//     title: "Arrays in JavaScript can be used to store ____.",
-//     choices: [
-//       "numbers and strings",
-//       "other arrays",
-//       "booleans",
-//       "all of the above"
-//     ],
-//     answer: "all of the above"
-//   }
+    questionDiv.appendChild(heading);
+
+    var rules = document.createElement("p");
+    rules.innerHTML = "Try to answer the following JavaScript related questions within the time limit. <br> Keep in mind that the incorrect answers will penalize your time by 10 seconds! <br> Good Luck!";
+
+    questionDiv.appendChild(rules);
+
+    var startButton = document.createElement("button");
+    startButton.textContent = "Start Quiz";
+    startButton.setAttribute("button-name", "start-button");
+
+    questionDiv.appendChild(startButton);
+}
 //start game score at 0
-
+var score = 0
 
 //start timer when game starts
 
 
 //loop over everyquestion
+var startQuiz = function(event) {
+    for (var i = 0; i < questions.length; i++);
     //display questions and answers
 
-
+}
 //compare answers
 
 
@@ -132,10 +147,29 @@ var questions = [
 //if wrong subtract time
     //show "Wrong!" under questions
 
+//create handler for buttons
+var buttonHandler = function(event) {
+    var targetEl = event.target;
+    var buttonId = targetEl.getAttribute("button-name");
 
+    if (buttonId === "start-button") {
+        console.log("start button");
+        questionDiv.innerHTML = "";
+        startQuiz();
+    }
+}
+//function to clear content
+var clearcontent = function() { 
+    document.getElementById().innerHTML = ""; 
+} 
 //show score at the end of game
 
 
 //give option to restart game
 
 
+//call function to load startscreen
+window.onload = startScreen();
+
+//event listener for whole page
+pageContentEl.addEventListener("click", buttonHandler);
