@@ -1,8 +1,9 @@
-//assign variables for display containers
+//assign variables for display containers, etc
 var questionDiv = document.querySelector("#quiz-questions");
 var answerDiv = document.querySelector("#answer-choices");
 var gradeDiv = document.querySelector("#grade");
 var pageContentEl = document.querySelector("#page-content");
+var timerEl = document.querySelector("#timer");
 //create an array of questions 
 var questions = [
     {
@@ -122,6 +123,7 @@ var startScreen = function() {
     var startButton = document.createElement("button");
     startButton.textContent = "Start Quiz";
     startButton.setAttribute("button-name", "start-button");
+    startButton.setAttribute("class", "btn");
 
     questionDiv.appendChild(startButton);
 }
@@ -129,12 +131,38 @@ var startScreen = function() {
 var score = 0
 
 //start timer when game starts
-
-
-//loop over everyquestion
+var startTimer = function() {
+     var time = 75;
+     
+    var counter = setInterval(function() {
+    if (time > 0) {
+      timerEl.textContent = "Time: " + time;
+      // Decrement `timeLeft` by 1
+      time--;
+    }
+    else {
+      timerEl.textContent = 'Time is up!';
+      // Use `clearInterval()` to stop the timer
+      clearInterval(counter);
+    }
+  }, 1000);
+}
+var test = ["turd", "apple", "fart"]
+//loop over every question
 var startQuiz = function(event) {
-    for (var i = 0; i < questions.length; i++);
-    //display questions and answers
+    for (var i = 0; i < questions.length; i++) {
+        //display questions and answers
+        var quizQuestions = document.createElement("h1");
+        quizQuestions.textContent = questions[i].q;
+        questionDiv.appendChild(quizQuestions);
+            var quizOptions = document.createElement("button");
+            quizOptions.textContent = questions[i].options;
+            quizOptions.setAttribute("class", "btn");
+            answerDiv.appendChild(quizOptions);
+        
+
+    }
+    
 
 }
 //compare answers
@@ -155,6 +183,7 @@ var buttonHandler = function(event) {
     if (buttonId === "start-button") {
         console.log("start button");
         questionDiv.innerHTML = "";
+        startTimer();
         startQuiz();
     }
 }

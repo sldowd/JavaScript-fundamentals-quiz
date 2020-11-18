@@ -4,20 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JavaScript Fundamentals Quiz</title>
-    <link rel="stylesheet" href="./assets/CSS/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="./assets/CSS/style.css"/>
 </head>
 <body>
-    <header>
+    <header class="navbar d-flex flex-row">
         <!--high scores div-->
-        <div id=view-high-scores>
+        <div id=view-high-scores class="d-flex justify-content-between">
             <a href="highscores.html">View High Scores</a>
         </div>
         <!--timer-->
-        <div id="timer">
+        <div id="timer" class="d-flex justify-content-between">Time: 0
         </div>
     </header>
-    <main id="page-content">
-        <div id="quiz-wrapper">
+    <main class="container-fluid" id="page-content">
+        <div class="mx-auto align-middle" id="quiz-wrapper">
 
         <!--quiz questions-->
         <section id="quiz-questions">
@@ -35,6 +36,10 @@
         </section>
         </div>
     </main>
+    <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+    <script type='text/javascript' src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="./assets/JS/script.js"></script>
 </body>
 </html>

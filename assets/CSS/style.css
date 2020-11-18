@@ -1,0 +1,18 @@
+a {
+    color: #f8abff;
+}
+.btn {
+    background-color: #312070;
+    color: #eeeeee;
+}
+.btn:hover {
+    background-color: #f8abff;
+    color: #eeeeee;
+}
+#quiz-wrapper {
+    width: 600px;
+    vertical-align: middle;
+    margin: auto;
+    text-align: center;
+    padding-top: 20%;
+}
