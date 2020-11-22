@@ -4,6 +4,11 @@ a {
 .btn {
     background-color: #312070;
     color: #eeeeee;
+    font-size: x-large;
+}
+#btn-ans {
+    display: block;
+    margin: 7px;
 }
 .btn:hover {
     background-color: #f8abff;

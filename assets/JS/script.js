@@ -4,6 +4,8 @@ var answerDiv = document.querySelector("#answer-choices");
 var gradeDiv = document.querySelector("#grade");
 var pageContentEl = document.querySelector("#page-content");
 var timerEl = document.querySelector("#timer");
+var questionCount = 0
+var score = 0
 //create an array of questions 
 var questions = [
     {
@@ -147,22 +149,25 @@ var startTimer = function() {
     }
   }, 1000);
 }
-var test = ["turd", "apple", "fart"]
-//loop over every question
-var startQuiz = function(event) {
-    for (var i = 0; i < questions.length; i++) {
-        //display questions and answers
-        var quizQuestions = document.createElement("h1");
+var showQuestion = function(i) {
+    var quizQuestions = document.createElement("h1");
         quizQuestions.textContent = questions[i].q;
         questionDiv.appendChild(quizQuestions);
-            var quizOptions = document.createElement("button");
-            quizOptions.textContent = questions[i].options;
-            quizOptions.setAttribute("class", "btn");
-            answerDiv.appendChild(quizOptions);
-        
+            
+                for (var j = 0; j < questions[i].options.length; j++) {
+                    var quizOptions = document.createElement("button");
+                    quizOptions.textContent = questions[i].options[j];
+                    quizOptions.setAttribute("class", "btn");
+                    quizOptions.setAttribute("id", "btn-ans");
+                    quizOptions.setAttribute("button-name", "answer");
+                    answerDiv.appendChild(quizOptions);
+                }
+            
+}
 
-    }
-    
+var startQuiz = function(event) {
+   
+   showQuestion(questionCount); 
 
 }
 //compare answers
@@ -179,6 +184,8 @@ var startQuiz = function(event) {
 var buttonHandler = function(event) {
     var targetEl = event.target;
     var buttonId = targetEl.getAttribute("button-name");
+    var chosenOption = targetEl.value;
+    
 
     if (buttonId === "start-button") {
         console.log("start button");
@@ -186,13 +193,53 @@ var buttonHandler = function(event) {
         startTimer();
         startQuiz();
     }
+    else if (buttonId === "answer") {
+        //if correct answer
+        //then add points
+        
+        if (chosenOption === questions.answer) {
+            console.log(chosenOption);
+            score++;
+            var gradeCorrect = document.createElement("h1");
+            gradeCorrect.textContent = "Correct!";
+            gradeDiv.appendChild(gradeCorrect);
+                if (questionCount < 10) {
+                    questionCount++;
+                    showQuestion();
+                } 
+                else {
+                    endGame();
+                };
+        } 
+        else {
+            //if not substract time
+            //time = time - 10;
+            var gradeWrong = document.createElement("h1");
+            gradeWrong.textContent = "Wrong!";
+            gradeDiv.appendChild(gradeWrong);
+            //then check place in array
+            if (questionCount < 10) {
+                //if not increment questionCount
+                questionCount++;
+                //call show question
+                showQuestion();
+            } 
+            else {
+                //if on last question end quiz
+                endGame();
+            };
+        }  
+    }
+
 }
 //function to clear content
 var clearcontent = function() { 
     document.getElementById().innerHTML = ""; 
 } 
 //show score at the end of game
-
+var endGame = function () {
+    
+}
 
 //give option to restart game
 
