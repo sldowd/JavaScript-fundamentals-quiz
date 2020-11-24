@@ -160,6 +160,7 @@ var showQuestion = function(i) {
                     quizOptions.setAttribute("class", "btn");
                     quizOptions.setAttribute("id", "btn-ans");
                     quizOptions.setAttribute("button-name", "answer");
+                    quizOptions.setAttribute("answer", questions[i].options[j]);
                     answerDiv.appendChild(quizOptions);
                 }
             
@@ -184,8 +185,8 @@ var startQuiz = function(event) {
 var buttonHandler = function(event) {
     var targetEl = event.target;
     var buttonId = targetEl.getAttribute("button-name");
-    var chosenOption = targetEl.value;
-    
+    var chosenOption = targetEl.getAttribute("answer");
+    var i = questionCount;
 
     if (buttonId === "start-button") {
         console.log("start button");
@@ -197,7 +198,7 @@ var buttonHandler = function(event) {
         //if correct answer
         //then add points
         
-        if (chosenOption === questions.answer) {
+        if (chosenOption === questions[i].answer) {
             console.log(chosenOption);
             score++;
             var gradeCorrect = document.createElement("h1");
@@ -205,9 +206,12 @@ var buttonHandler = function(event) {
             gradeDiv.appendChild(gradeCorrect);
                 if (questionCount < 10) {
                     questionCount++;
+                    console.log(questionCount);
+                    
                     showQuestion();
                 } 
                 else {
+                    
                     endGame();
                 };
         } 
@@ -221,11 +225,13 @@ var buttonHandler = function(event) {
             if (questionCount < 10) {
                 //if not increment questionCount
                 questionCount++;
+                
                 //call show question
                 showQuestion();
             } 
             else {
                 //if on last question end quiz
+                
                 endGame();
             };
         }  
